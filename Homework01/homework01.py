@@ -3,13 +3,21 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
 
-def Initial():
+def init() -> None:
+    """
+    初始化窗口
+    :return:
+    """
     glClearColor(1.0, 1.0, 1.0, 1.0)  # 设置窗口背景色为白色
     glMatrixMode(GL_PROJECTION)  # 指定设置投影参数
     gluOrtho2D(0.0, 200.0, 0.0, 150.0)  # 设置投影参数
 
 
-def render():
+def render() -> None:
+    """
+    绘制多个图形
+    :return:
+    """
     glClear(GL_COLOR_BUFFER_BIT)  # 用当前背景色填充窗口
 
     glColor3f(1.0, 1.0, 0.4)  # 设置画笔颜色为黄色
@@ -30,5 +38,5 @@ if __name__ == "__main__":
     glutInitWindowPosition(100, 120)  # 设置窗口的位置
     glutCreateWindow("Emoji")  # 创建一个名为Emoji的窗口（中文会乱码）
     glutDisplayFunc(render)  # 设置当前窗口的显示回调函数
-    Initial()  # 完成窗口的初始化
+    init()  # 完成窗口的初始化
     glutMainLoop()  # 启动主GLUT事件处理循环

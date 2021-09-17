@@ -108,7 +108,7 @@ if __name__ == "__main__":
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB)  # 使用双缓存及RGB模型
     glutInitWindowSize(400, 300)  # 指定窗口尺寸
     glutInitWindowPosition(100, 100)  # 指定窗口在屏幕上的位置
-    glutCreateWindow("111")
+    glutCreateWindow("Rubber-band drawing")
     glutDisplayFunc(display)
     glutReshapeFunc(changeSize)  # 指定窗口再整形回调函数
     glutMouseFunc(mousePlot)  # 指定鼠标响应函数
