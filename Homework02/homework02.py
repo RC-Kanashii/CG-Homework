@@ -2,7 +2,6 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
-
 class Point:
     """
     点类
@@ -20,7 +19,7 @@ winHeight = 300  # 窗口的高度
 
 
 def init() -> None:
-    glClearColor(1, 1, 1, 1)  # 设置窗口背景颜色
+    glClearColor(1.0, 1.0, 1.0, 1.0)  # 设置窗口背景颜色
 
 
 def changeSize(w: int, h: int) -> None:
@@ -103,6 +102,29 @@ def passiveMouseMove(xMouse: GLint, yMouse: GLint) -> None:
         glutPostRedisplay()
 
 
+def pressKey(key: str, x: int, y: int) -> None:
+    """
+    监听键盘操作
+    :param key: 按下哪个按键
+    :param x:
+    :param y:
+    :return:
+    """
+    if key == b'p':  # 注意：必须要加二进制前缀
+        global iPointNum
+        if iPointNum == 0 or iPointNum == 2:  # 要么没有顶点，要么两个顶点都有，这时候需要重新绘制直线
+            # 确定直线的第一个端点
+            iPointNum = 1
+            points[0].x = x
+            points[0].y = winHeight - y
+        else:
+            # 确定直线的第二个端点
+            iPointNum = 2
+            points[1].x = x
+            points[1].y = winHeight - y
+            glutPostRedisplay()  # 指定窗口重新绘制
+
+
 if __name__ == "__main__":
     glutInit()
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB)  # 使用双缓存及RGB模型
@@ -113,5 +135,6 @@ if __name__ == "__main__":
     glutReshapeFunc(changeSize)  # 指定窗口再整形回调函数
     glutMouseFunc(mousePlot)  # 指定鼠标响应函数
     glutPassiveMotionFunc(passiveMouseMove)  # 指定鼠标移动响应函数
+    glutKeyboardFunc(pressKey)  # 指定键盘回调函数
     init()
     glutMainLoop()  # 启动主GLUT事件处理循环
