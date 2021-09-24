@@ -106,8 +106,8 @@ def pressKey(key: str, x: int, y: int) -> None:
     """
     监听键盘操作
     :param key: 按下哪个按键
-    :param x:
-    :param y:
+    :param x: 光标横坐标
+    :param y: 光标纵坐标
     :return:
     """
     if key == b'p':  # 注意：必须要加二进制前缀
